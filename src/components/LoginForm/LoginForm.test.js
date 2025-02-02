@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import LoginForm from '.';
+import userEvent from '@testing-library/user-event';
 
 test('renders sign in page', () => {
   render(<LoginForm />);
