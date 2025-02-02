@@ -24,7 +24,15 @@ export default function LoginForm() {
     const email = data.get('email');
     const password = data.get('password');
 
-    // Add validation code here
+    let isValid = true;
+
+    // Validate email
+    if (!emailValidator.validate(email)) {
+      setEmailError('Invalid email address');
+      isValid = false;
+    } else {
+      setEmailError('');
+    }
 
   }
 
