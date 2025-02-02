@@ -16,6 +16,8 @@ export default function LoginForm() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+
   const validateForm = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget);
