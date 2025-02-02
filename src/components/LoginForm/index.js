@@ -113,6 +113,8 @@ export default function LoginForm() {
               name="email"
               autoComplete="email"
               autoFocus
+              error={!!emailError}
+              helperText={emailError}
             />
             <TextField
               margin="normal"
@@ -123,6 +125,8 @@ export default function LoginForm() {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={!!passwordError}
+              helperText={passwordError}
             />
             <Button
               type="submit"
