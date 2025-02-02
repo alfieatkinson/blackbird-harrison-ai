@@ -43,7 +43,6 @@ export default function LoginForm() {
     }
 
     return isValid;
-
   }
 
   const handleSubmit = (event) => {
@@ -53,8 +52,11 @@ export default function LoginForm() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    validateForm(event);
-    setShowAlert("Login Successful");
+
+    // Perform validation before submitting
+    if (validateForm(event)) {
+      setShowAlert("Login Successful");
+    }
   };
 
   return (
