@@ -34,6 +34,16 @@ export default function LoginForm() {
       setEmailError('');
     }
 
+    // Validate password
+    if (!passwordRegex.test(password)) {
+      setPasswordError('Password must be at least 8 characters long, contain both uppercase and lowercase letters, at least one number, and one special character.');
+      isValid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    return isValid;
+
   }
 
   const handleSubmit = (event) => {
