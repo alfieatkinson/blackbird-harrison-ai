@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
 import logo from '../../assets/logo.svg';
+import emailValidator from 'email-validator';
 
 
 export default function LoginForm() {
