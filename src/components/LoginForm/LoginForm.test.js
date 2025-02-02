@@ -42,3 +42,21 @@ test('does not show error for valid email', async () => {
     expect(screen.queryByText('Please enter a valid email address.')).not.toBeInTheDocument();
   });
 });
+
+// Test for password validation - invalid password
+test('shows error message for invalid password', async () => {
+  render(<LoginForm />);
+
+  // Get password input field and submit button
+  const passwordInput = screen.getByLabelText(/password/i);
+  const submitButton = screen.getByRole('button', { name: /sign in/i });
+
+  // Input invalid password
+  userEvent.type(passwordInput, 'short');
+  fireEvent.click(submitButton);
+
+  // Wait for error message
+  await waitFor(() => {
+    expect(screen.getByText('Password must be at least 8 characters long, contain both uppercase and lowercase letters, at least one number, and one special character.')).toBeInTheDocument();
+  });
+});
