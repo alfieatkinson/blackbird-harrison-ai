@@ -24,3 +24,21 @@ test('shows error message for invalid email', async () => {
     expect(screen.getByText('Please enter a valid email address.')).toBeInTheDocument();
   });
 });
+
+// Test for email validation - valid email
+test('does not show error for valid email', async () => {
+  render(<LoginForm />);
+
+  // Get email input field and submit button
+  const emailInput = screen.getByLabelText(/email address/i);
+  const submitButton = screen.getByRole('button', { name: /sign in/i });
+
+  // Input valid email
+  userEvent.type(emailInput, 'test@example.com');
+  fireEvent.click(submitButton);
+
+  // Ensure no error message is displayed
+  await waitFor(() => {
+    expect(screen.queryByText('Please enter a valid email address.')).not.toBeInTheDocument();
+  });
+});
