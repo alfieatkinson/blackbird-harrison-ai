@@ -13,6 +13,9 @@ import emailValidator from 'email-validator';
 
 export default function LoginForm() {
   const [showAlert, setShowAlert] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   const validateForm = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget);
