@@ -78,3 +78,23 @@ test('does not show error for valid password', async () => {
     expect(screen.queryByText('Password must be at least 8 characters long, contain both uppercase and lowercase letters, at least one number, and one special character.')).not.toBeInTheDocument();
   });
 });
+
+// Test for successful login
+test('shows success snackbar on successful login', async () => {
+  render(<LoginForm />);
+
+  // Get email, password input fields, and submit button
+  const emailInput = screen.getByLabelText(/email address/i);
+  const passwordInput = screen.getByLabelText(/password/i);
+  const submitButton = screen.getByRole('button', { name: /sign in/i });
+
+  // Input valid email and password
+  userEvent.type(emailInput, 'test@example.com');
+  userEvent.type(passwordInput, 'Valid123!');
+  fireEvent.click(submitButton);
+
+  // Wait for success snackbar
+  await waitFor(() => {
+    expect(screen.getByText('Login Successful')).toBeInTheDocument();
+  });
+});
