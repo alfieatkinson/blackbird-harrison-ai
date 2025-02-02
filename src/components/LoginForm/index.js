@@ -28,7 +28,7 @@ export default function LoginForm() {
 
     // Validate email
     if (!emailValidator.validate(email)) {
-      setEmailError('Invalid email address');
+      setEmailError('Please enter a valid email address.');
       isValid = false;
     } else {
       setEmailError('');
