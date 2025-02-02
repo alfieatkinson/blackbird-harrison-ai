@@ -7,4 +7,20 @@ test('renders sign in page', () => {
   expect(signInText).toBeInTheDocument();
 });
 
-// Add more unit test here
+// Test for email validation - invalid email
+test('shows error message for invalid email', async () => {
+  render(<LoginForm />);
+
+  // Get email input field and submit button
+  const emailInput = screen.getByLabelText(/email address/i);
+  const submitButton = screen.getByRole('button', { name: /sign in/i });
+
+  // Input invalid email
+  userEvent.type(emailInput, 'invalidemail');
+  fireEvent.click(submitButton);
+
+  // Wait for error message
+  await waitFor(() => {
+    expect(screen.getByText('Please enter a valid email address.')).toBeInTheDocument();
+  });
+});
